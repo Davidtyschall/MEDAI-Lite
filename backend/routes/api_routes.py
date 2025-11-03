@@ -3,15 +3,20 @@ API Routes Module
 Defines REST API endpoints for the health risk assessment application.
 """
 
+import os
 from flask import Blueprint, request, jsonify
 from backend.models.risk_calculator import RiskCalculator
 from backend.models.database_manager import DatabaseManager
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
-# Initialize calculator and database manager
+# Initialize calculator
 calculator = RiskCalculator()
-db_manager = DatabaseManager()
+
+def get_db_manager():
+    """Get database manager instance with configurable path"""
+    db_path = os.environ.get('DATABASE_PATH', 'medai_lite.db')
+    return DatabaseManager(db_path)
 
 
 @api_bp.route('/health', methods=['GET'])
@@ -112,6 +117,7 @@ def calculate_risk():
         
         # Save to database
         user_id = data.get('user_id')
+        db_manager = get_db_manager()
         assessment_id = db_manager.save_assessment(user_id, health_data, risk_result)
         
         # Add assessment ID to response
@@ -143,6 +149,7 @@ def get_history():
         if limit < 1 or limit > 100:
             return jsonify({'error': 'Limit must be between 1 and 100'}), 400
         
+        db_manager = get_db_manager()
         assessments = db_manager.get_assessment_history(user_id, limit)
         
         return jsonify({
@@ -166,6 +173,7 @@ def get_assessment(assessment_id):
         JSON response with assessment details
     """
     try:
+        db_manager = get_db_manager()
         assessment = db_manager.get_assessment_by_id(assessment_id)
         
         if assessment is None:
@@ -189,6 +197,7 @@ def delete_assessment(assessment_id):
         JSON response with deletion status
     """
     try:
+        db_manager = get_db_manager()
         deleted = db_manager.delete_assessment(assessment_id)
         
         if not deleted:
@@ -214,6 +223,7 @@ def get_statistics():
     try:
         user_id = request.args.get('user_id', type=int)
         
+        db_manager = get_db_manager()
         stats = db_manager.get_statistics(user_id)
         
         if stats is None:

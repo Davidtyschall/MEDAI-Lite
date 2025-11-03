@@ -101,8 +101,8 @@ def calculate_risk():
             if not (0 <= exercise_days <= 7):
                 return jsonify({'error': 'Invalid exercise days value'}), 400
             
-        except (ValueError, TypeError) as e:
-            return jsonify({'error': f'Invalid data type: {str(e)}'}), 400
+        except (ValueError, TypeError):
+            return jsonify({'error': 'Invalid data type provided'}), 400
         
         # Prepare health data
         health_data = {

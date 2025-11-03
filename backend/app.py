@@ -39,10 +39,14 @@ def create_app(config=None):
     @app.route('/<path:path>')
     def serve(path):
         """Serve React frontend"""
-        if path and os.path.exists(os.path.join(app.static_folder, path)):
-            return send_from_directory(app.static_folder, path)
-        else:
-            return send_from_directory(app.static_folder, 'index.html')
+        # Prevent path traversal attacks
+        if path and not path.startswith('..') and not os.path.isabs(path):
+            file_path = os.path.join(app.static_folder, path)
+            # Ensure the resolved path is within static_folder
+            if os.path.exists(file_path) and os.path.commonpath([app.static_folder, file_path]) == app.static_folder:
+                return send_from_directory(app.static_folder, path)
+        # Fallback to index.html for React Router (safe: hardcoded filename)
+        return send_from_directory(app.static_folder, 'index.html')
     
     return app
 

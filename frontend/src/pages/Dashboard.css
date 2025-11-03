@@ -1,0 +1,155 @@
+.dashboard {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-small svg {
+  display: block;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.api-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #48bb78;
+}
+
+.api-status.error .status-dot {
+  background: #f56565;
+}
+
+.api-status.checking .status-dot {
+  background: #ecc94b;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 12px 24px;
+  background: #f7fafc;
+  color: #4a5568;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #edf2f7;
+}
+
+.nav-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.dashboard-content {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .header-left {
+    flex-direction: column;
+  }
+
+  .header-right {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .user-info {
+    align-items: center;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+
+  .dashboard-nav {
+    flex-direction: column;
+  }
+}

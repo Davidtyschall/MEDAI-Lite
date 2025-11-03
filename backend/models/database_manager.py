@@ -5,7 +5,6 @@ Manages SQLite database operations for health risk assessments.
 
 import sqlite3
 import json
-from datetime import datetime
 import os
 
 

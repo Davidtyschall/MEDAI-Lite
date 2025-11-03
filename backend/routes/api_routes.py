@@ -4,9 +4,13 @@ Defines REST API endpoints for the health risk assessment application.
 """
 
 import os
+import logging
 from flask import Blueprint, request, jsonify
 from backend.models.risk_calculator import RiskCalculator
 from backend.models.database_manager import DatabaseManager
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -126,7 +130,8 @@ def calculate_risk():
         return jsonify(risk_result), 200
         
     except Exception as e:
-        return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+        logger.error(f'Error in calculate_risk: {str(e)}', exc_info=True)
+        return jsonify({'error': 'Internal server error'}), 500
 
 
 @api_bp.route('/history', methods=['GET'])
@@ -158,7 +163,8 @@ def get_history():
         }), 200
         
     except Exception as e:
-        return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+        logger.error(f'Error in get_history: {str(e)}', exc_info=True)
+        return jsonify({'error': 'Internal server error'}), 500
 
 
 @api_bp.route('/history/<int:assessment_id>', methods=['GET'])
@@ -182,7 +188,8 @@ def get_assessment(assessment_id):
         return jsonify(assessment), 200
         
     except Exception as e:
-        return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+        logger.error(f'Error in get_assessment: {str(e)}', exc_info=True)
+        return jsonify({'error': 'Internal server error'}), 500
 
 
 @api_bp.route('/history/<int:assessment_id>', methods=['DELETE'])
@@ -206,7 +213,8 @@ def delete_assessment(assessment_id):
         return jsonify({'message': 'Assessment deleted successfully'}), 200
         
     except Exception as e:
-        return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+        logger.error(f'Error in delete_assessment: {str(e)}', exc_info=True)
+        return jsonify({'error': 'Internal server error'}), 500
 
 
 @api_bp.route('/statistics', methods=['GET'])
@@ -239,4 +247,5 @@ def get_statistics():
         return jsonify(stats), 200
         
     except Exception as e:
-        return jsonify({'error': f'Internal server error: {str(e)}'}), 500
+        logger.error(f'Error in get_statistics: {str(e)}', exc_info=True)
+        return jsonify({'error': 'Internal server error'}), 500

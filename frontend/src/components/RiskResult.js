@@ -162,7 +162,7 @@ function RiskResult({ result, onReset }) {
           <div className="bmi-value">{result.bmi}</div>
           <div className="bmi-categories">
             <div className={result.bmi < 18.5 ? 'active' : ''}>
-              Underweight (&lt;18.5)
+              Underweight {'(<18.5)'}
             </div>
             <div className={result.bmi >= 18.5 && result.bmi < 25 ? 'active' : ''}>
               Normal (18.5-24.9)
@@ -171,7 +171,7 @@ function RiskResult({ result, onReset }) {
               Overweight (25-29.9)
             </div>
             <div className={result.bmi >= 30 ? 'active' : ''}>
-              Obese (≥30)
+              Obese {'(≥30)'}
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ from flask_cors import CORS
 import os
 
 from backend.routes.api_routes import api_bp
+from backend.routes.aggregate_routes import aggregate_bp
 
 
 def create_app(config=None):
@@ -33,6 +34,7 @@ def create_app(config=None):
     
     # Register blueprints
     app.register_blueprint(api_bp)
+    app.register_blueprint(aggregate_bp)
     
     # Serve React App
     @app.route('/', defaults={'path': ''})

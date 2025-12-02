@@ -5,7 +5,7 @@ Tracks system events and user actions for compliance and security.
 
 import sqlite3
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, Any, List
 
 

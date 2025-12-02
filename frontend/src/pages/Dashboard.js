@@ -3,6 +3,7 @@ import './Dashboard.css';
 import RiskCalculator from '../components/RiskCalculator';
 import HistoryList from '../components/HistoryList';
 import StatisticsPanel from '../components/StatisticsPanel';
+import AdminDashboard from '../components/AdminDashboard';
 import { healthCheck } from '../services/api';
 
 function Dashboard({ onLogout }) {
@@ -79,6 +80,12 @@ function Dashboard({ onLogout }) {
           >
             📈 Statistics
           </button>
+          <button 
+            className={activeTab === 'admin' ? 'nav-btn active' : 'nav-btn'}
+            onClick={() => setActiveTab('admin')}
+          >
+            🔧 Admin
+          </button>
         </nav>
 
         <main className="dashboard-content">
@@ -90,6 +97,9 @@ function Dashboard({ onLogout }) {
           )}
           {activeTab === 'statistics' && (
             <StatisticsPanel refreshTrigger={refreshTrigger} />
+          )}
+          {activeTab === 'admin' && (
+            <AdminDashboard />
           )}
         </main>
       </div>

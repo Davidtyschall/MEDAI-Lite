@@ -14,8 +14,15 @@ export const healthCheck = async () => {
   return response.data;
 };
 
+// Legacy single-agent risk calculation (keep for backward compatibility)
 export const calculateRisk = async (healthData) => {
   const response = await api.post('/risk', healthData);
+  return response.data;
+};
+
+// NEW: Multi-agent comprehensive risk assessment
+export const calculateRiskAggregate = async (healthData) => {
+  const response = await api.post('/aggregate', healthData);
   return response.data;
 };
 
@@ -46,4 +53,25 @@ export const getStatistics = async (userId = null) => {
   return response.data;
 };
 
-export default api;
+// NEW: Admin API endpoints
+export const getSystemStatus = async () => {
+  const response = await api.get('/admin/system/status');
+  return response.data;
+};
+
+export const getSystemMetrics = async () => {
+  const response = await api.get('/admin/system/metrics');
+  return response.data;
+};
+
+export const getAuditLogs = async (params = {}) => {
+  const response = await api.get('/admin/audit-logs', { params });
+  return response.data;
+};
+
+export const getAuditStats = async (days = 30) => {
+  const response = await api.get('/admin/audit-logs/stats', { params: { days } });
+  return response.data;
+};
+
+export default api;  // <-- MOVED TO THE END

@@ -10,6 +10,7 @@ import os
 from backend.routes.api_routes import api_bp
 from backend.routes.aggregate_routes import aggregate_bp
 from backend.routes.watch_routes import watch_bp
+from backend.routes.admin_routes import admin_bp
 
 
 def create_app(config=None):
@@ -37,6 +38,7 @@ def create_app(config=None):
     app.register_blueprint(api_bp)
     app.register_blueprint(aggregate_bp)
     app.register_blueprint(watch_bp)
+    app.register_blueprint(admin_bp)
     
     # Serve React App
     @app.route('/', defaults={'path': ''})

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './RiskCalculator.css';
-import { calculateRisk } from '../services/api';
+import { calculateRiskAggregate } from '../services/api';
 import RiskResult from './RiskResult';
+import AppleWatchConnect from './AppleWatchConnect';
 
 function RiskCalculator({ onComplete }) {
   const [formData, setFormData] = useState({
@@ -27,6 +28,30 @@ function RiskCalculator({ onComplete }) {
     }));
   };
 
+  // NEW: Handle data import from Apple Watch
+  const handleWatchDataImport = (watchData) => {
+    setFormData({
+      age: watchData.age.toString(),
+      weight_kg: watchData.weight_kg.toString(),
+      height_cm: watchData.height_cm.toString(),
+      systolic: watchData.systolic.toString(),
+      diastolic: watchData.diastolic.toString(),
+      cholesterol: watchData.cholesterol.toString(),
+      is_smoker: watchData.is_smoker,
+      exercise_days: watchData.exercise_days.toString()
+    });
+    
+    // Show success feedback
+    setError('');
+    setTimeout(() => {
+      const successMsg = document.createElement('div');
+      successMsg.className = 'success-toast';
+      successMsg.textContent = '✓ Apple Watch data imported successfully!';
+      document.body.appendChild(successMsg);
+      setTimeout(() => successMsg.remove(), 3000);
+    }, 100);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -45,7 +70,8 @@ function RiskCalculator({ onComplete }) {
         exercise_days: parseInt(formData.exercise_days)
       };
 
-      const response = await calculateRisk(requestData);
+      // Use multi-agent aggregate endpoint
+      const response = await calculateRiskAggregate(requestData);
       setResult(response);
       if (onComplete) onComplete();
     } catch (err) {
@@ -75,6 +101,11 @@ function RiskCalculator({ onComplete }) {
       <div className="card">
         <h2>Health Risk Calculator</h2>
         <p className="subtitle">Enter your health information to calculate your risk score</p>
+
+        {/* NEW: Apple Watch Connection */}
+        {!result && (
+          <AppleWatchConnect onDataImport={handleWatchDataImport} />
+        )}
 
         {error && <div className="error">{error}</div>}
 

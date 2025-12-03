@@ -13,7 +13,7 @@ class DatabaseManager:
     Manages database operations for storing and retrieving health risk assessments.
     """
     
-    def __init__(self, db_path='medai_lite.db'):
+    def __init__(self, db_path='/var/data/medai_lite.db'):
         """
         Initialize DatabaseManager
         

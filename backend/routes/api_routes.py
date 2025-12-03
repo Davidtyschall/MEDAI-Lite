@@ -19,7 +19,7 @@ calculator = RiskCalculator()
 
 def get_db_manager():
     """Get database manager instance with configurable path"""
-    db_path = os.environ.get('DATABASE_PATH', 'medai_lite.db')
+    db_path = os.environ.get('DATABASE_PATH', '/var/data/medai_lite.db')
     return DatabaseManager(db_path)
 
 

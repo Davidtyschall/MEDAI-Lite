@@ -12,7 +12,10 @@ from backend.models.database_manager import DatabaseManager
 # Configure logging
 logger = logging.getLogger(__name__)
 
-aggregate_bp = Blueprint('aggregate', url_prefix='/api/aggregate')
+from flask import Blueprint
+
+aggregate_bp = Blueprint('aggregate', __name__, url_prefix='/api/aggregate')
+
 
 # Initialize aggregator agent
 aggregator = AggregatorAgent()

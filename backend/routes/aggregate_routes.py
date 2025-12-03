@@ -7,6 +7,7 @@ import os
 import logging
 from flask import Blueprint, request, jsonify
 from backend.models.agents import AggregatorAgent
+from backend.models.database_manager import DatabaseManager
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -97,6 +98,25 @@ def assess_comprehensive_risk():
         
         # Perform comprehensive assessment
         assessment_result = aggregator.assess_comprehensive_risk(health_data)
+        
+        # Save to database
+        db_manager = DatabaseManager()
+        user_id = data.get('user_id', 'guest')
+        
+        db_manager.save_assessment(
+            user_id=user_id,
+            age=age,
+            weight_kg=weight_kg,
+            height_cm=height_cm,
+            systolic=systolic,
+            diastolic=diastolic,
+            cholesterol=cholesterol,
+            is_smoker=is_smoker,
+            exercise_days=exercise_days,
+            risk_score=assessment_result['overall_health_index'],
+            bmi=assessment_result['agent_assessments']['metabolic'].get('bmi', 0),
+            risk_level=assessment_result['overall_risk_level']
+        )
         
         # Add user_id if provided
         if 'user_id' in data:

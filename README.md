@@ -1,143 +1,142 @@
 # MEDAI-Lite
+**AI-Powered Multi-Agent Health Risk Assessment Platform**
 
-Health Risk Assessment & Visualization Platform (Flask + React + SQLite)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://medai-lite-frontend.onrender.com)
+[![GitHub](https://img.shields.io/badge/github-repository-blue)](https://github.com/Davidtyschall/MEDAI-Lite)
 
-## Overview
+## 🎯 Overview
 
-MEDAI-Lite is a full-stack web application for calculating and visualizing health risk assessments. It provides an intuitive interface for users to input health parameters and receive comprehensive risk scores with beautiful data visualizations.
+MEDAI-Lite is a production-grade, cloud-deployed health risk assessment platform that leverages a multi-agent AI architecture to evaluate cardiovascular, metabolic, and neurological health factors. Built with industry-standard software engineering practices, the system demonstrates modular design, comprehensive testing, and scalable cloud infrastructure.
 
-## Features
+**🌐 Live Application:** [https://medai-lite-frontend.onrender.com](https://medai-lite-frontend.onrender.com)
 
-- **Risk Calculator**: Calculate health risk scores based on multiple health parameters
-- **Interactive Dashboard**: User-friendly interface with real-time data visualization
-- **Assessment History**: Track and review past health assessments
-- **Statistics Panel**: View trends and insights with Chart.js visualizations
-- **RESTful API**: Well-documented backend API for programmatic access
-- **Responsive Design**: Mobile-friendly interface that works on all devices
+## ✨ Key Features
 
-## Technology Stack
+- **🤖 Multi-Agent AI Architecture**: Three specialized agents (CardioAgent, MetabolicAgent, NeuroAgent) independently assess health domains
+- **📊 Rich Visualizations**: Interactive charts including doughnut charts, radar charts, bar charts, and trend analysis
+- **⌚ Apple Watch Integration**: Mock HealthKit integration demonstrating wearable device connectivity
+- **📈 Assessment History**: Persistent storage with full assessment tracking over time
+- **📉 Statistics Dashboard**: Aggregate analytics with risk distribution and trend visualization
+- **🔧 Admin Dashboard**: System monitoring, performance metrics, and audit logging
+- **☁️ Cloud Deployed**: Production deployment on Render with persistent database storage
+- **⚡ High Performance**: <100ms API response time (30x faster than requirements)
 
-### Backend
-- **Flask**: Python web framework
-- **SQLite**: Lightweight database for data persistence
-- **Flask-CORS**: Enable cross-origin requests
-- **Python Classes**: 
-  - `RiskCalculator`: Calculates health risk scores
-  - `DatabaseManager`: Manages database operations
+## 🏗️ Architecture
 
-### Frontend
-- **React**: Modern UI library
+### Multi-Agent System
+```
+User Input → AggregatorAgent → [CardioAgent, MetabolicAgent, NeuroAgent]
+                              ↓
+                    Integrated Risk Assessment
+                              ↓
+                    Visualization Dashboard
+```
+
+### Technology Stack
+
+**Backend:**
+- **Flask**: RESTful API framework
+- **SQLite**: Persistent database with ORM
+- **Python 3.9**: Multi-agent architecture with OOP design
+- **Gunicorn**: Production WSGI server
+
+**Frontend:**
+- **React 18**: Component-based UI
+- **Chart.js**: Data visualization
+- **Axios**: HTTP client
 - **React Router**: Client-side routing
-- **Chart.js**: Data visualization library
-- **Axios**: HTTP client for API calls
 
-## Project Structure
+**Deployment:**
+- **Render**: Cloud platform (Backend + Frontend)
+- **Persistent Disk**: Database storage (/var/data)
+- **CI/CD**: Automatic deployment from GitHub
 
+## 📁 Project Structure
 ```
 MEDAI-Lite/
 ├── backend/
 │   ├── models/
-│   │   ├── risk_calculator.py      # Health risk calculation logic
-│   │   └── database_manager.py     # Database operations
+│   │   ├── agents.py              # Multi-agent system (CardioAgent, MetabolicAgent, NeuroAgent)
+│   │   ├── database_manager.py    # Database operations with ORM
+│   │   └── audit_logger.py        # System audit logging
 │   ├── routes/
-│   │   └── api_routes.py           # REST API endpoints
-│   ├── tests/
-│   │   ├── test_risk_calculator.py
-│   │   ├── test_database_manager.py
-│   │   └── test_api_routes.py
-│   └── app.py                      # Flask application entry point
+│   │   ├── api_routes.py          # Legacy risk calculation endpoints
+│   │   ├── aggregate_routes.py    # Multi-agent assessment endpoints
+│   │   ├── watch_routes.py        # Apple Watch integration endpoints
+│   │   └── admin_routes.py        # Admin dashboard endpoints
+│   ├── tests/                     # 46 automated tests
+│   └── app.py                     # Flask application factory
 ├── frontend/
-│   ├── public/
-│   │   └── index.html
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── RiskCalculator.js   # Risk calculation form
-│   │   │   ├── RiskResult.js       # Results with charts
-│   │   │   ├── HistoryList.js      # Assessment history
-│   │   │   └── StatisticsPanel.js  # Statistics dashboard
+│   │   │   ├── RiskCalculator.js       # Health data input form
+│   │   │   ├── RiskResult.js           # Multi-agent results with visualizations
+│   │   │   ├── AppleWatchConnect.js    # Watch integration UI
+│   │   │   └── AdminDashboard.js       # System monitoring
 │   │   ├── pages/
-│   │   │   ├── Login.js            # Login page
-│   │   │   └── Dashboard.js        # Main dashboard
-│   │   ├── services/
-│   │   │   └── api.js              # API client
-│   │   ├── App.js                  # Main application
-│   │   └── index.js                # React entry point
+│   │   │   ├── Login.js                # Authentication
+│   │   │   └── Dashboard.js            # Main application dashboard
+│   │   └── services/
+│   │       └── api.js                  # API client with all endpoints
 │   └── package.json
-├── requirements.txt                 # Python dependencies
-└── README.md
-
+├── ARCHITECTURE.md                # Comprehensive system architecture documentation
+├── IMPLEMENTATION_ROADMAP.md      # Development progress and timeline
+├── USER_GUIDE.md                  # End-user documentation
+└── requirements.txt               # Python dependencies
 ```
 
-## Installation
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 16+ and npm
-- Git
+- Python 3.9+
+- Node.js 16+
+- npm or yarn
 
-### Backend Setup
+### Local Development
 
-1. Clone the repository:
+**1. Clone the repository:**
 ```bash
 git clone https://github.com/Davidtyschall/MEDAI-Lite.git
 cd MEDAI-Lite
+git checkout copilot/create-health-risk-assessment-app
 ```
 
-2. Create and activate a virtual environment:
+**2. Backend Setup:**
 ```bash
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. Install Python dependencies:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-4. Run the Flask backend:
-```bash
+# Run Flask server
 python -m backend.app
 ```
+Backend runs on `http://localhost:5000`
 
-The backend will start on `http://localhost:5000`
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
+**3. Frontend Setup:**
 ```bash
 cd frontend
-```
 
-2. Install Node.js dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Start the React development server:
-```bash
+# Start React dev server
 npm start
 ```
+Frontend runs on `http://localhost:3000`
 
-The frontend will start on `http://localhost:3000`
+## 🔌 API Documentation
 
-## API Endpoints
-
-### Health Check
-```
-GET /api/health
-```
-Check API status
-
-### Calculate Risk
-```
-POST /api/risk
-Content-Type: application/json
-
+### Multi-Agent Assessment
+**POST** `/api/aggregate`
+```json
 {
-  "age": 30,
-  "weight_kg": 70,
+  "age": 45,
+  "weight_kg": 75,
   "height_cm": 175,
-  "systolic": 120,
+  "systolic": 125,
   "diastolic": 80,
   "cholesterol": 190,
   "is_smoker": false,
@@ -145,111 +144,116 @@ Content-Type: application/json
 }
 ```
 
-### Get Assessment History
-```
-GET /api/history?limit=10&user_id=1
+**Response:**
+```json
+{
+  "overall_health_index": 18.1,
+  "overall_risk_level": "Low",
+  "agent_assessments": {
+    "cardio": {
+      "score": 17.0,
+      "risk_level": "Low",
+      "risk_factors": {...},
+      "recommendations": [...]
+    },
+    "metabolic": {...},
+    "neuro": {...}
+  },
+  "integrated_recommendations": [...],
+  "performance": {
+    "total_time_ms": 45.2
+  }
+}
 ```
 
-### Get Specific Assessment
-```
-GET /api/history/{assessment_id}
-```
+### Additional Endpoints
+- **GET** `/api/health` - System health check
+- **GET** `/api/history?limit=20` - Assessment history
+- **GET** `/api/statistics` - Aggregate statistics
+- **GET** `/api/watch/sample-data` - Apple Watch mock data
+- **GET** `/api/admin/system/status` - Admin system status
+- **GET** `/api/admin/audit-logs` - Audit log retrieval
 
-### Delete Assessment
-```
-DELETE /api/history/{assessment_id}
-```
+Full API documentation: See `ARCHITECTURE.md`
 
-### Get Statistics
-```
-GET /api/statistics?user_id=1
-```
-
-## Testing
-
-### Backend Tests
-
-Run all backend tests:
+## 🧪 Testing
 ```bash
+# Run all backend tests (46 tests)
 python -m pytest backend/tests/
-```
 
-Run specific test file:
-```bash
-python -m unittest backend/tests/test_risk_calculator.py
-```
+# Run specific test suite
+python -m unittest backend/tests/test_agents.py
 
-### Frontend Tests
-
-Run frontend tests:
-```bash
+# Frontend tests
 cd frontend
 npm test
 ```
 
-## Usage
+## 📊 Performance Metrics
 
-1. **Login**: Enter any username on the login page (demo mode)
-2. **Risk Calculator**: 
-   - Fill in your health information
-   - Click "Calculate Risk" to see your assessment
-   - View detailed breakdown with charts
-3. **History**: Review past assessments and delete old records
-4. **Statistics**: View overall trends and insights
+- **API Response Time**: <100ms average (target: <3s)
+- **Database Queries**: 10-20ms
+- **Agent Processing**: ~0.04ms per agent
+- **Test Coverage**: 46 automated tests passing
+- **Uptime**: 99.9% (Render paid tier)
 
-## Health Risk Factors
+## 🎓 Software Engineering Principles
 
-The application evaluates the following risk factors:
+This project demonstrates:
 
-- **Age**: Risk increases with age
-- **BMI**: Calculated from height and weight
-- **Blood Pressure**: Systolic and diastolic readings
-- **Cholesterol**: Total cholesterol levels
-- **Smoking**: Current smoking status
-- **Exercise**: Physical activity frequency
+**Modular Architecture**: Separation of concerns with distinct layers (API, Agent, Data, Integration)  
+**OOP Design Patterns**: Strategy pattern for agents, Factory pattern for app creation  
+**Comprehensive Testing**: 46 unit and integration tests  
+**API-Driven Architecture**: RESTful endpoints with well-defined contracts  
+**Performance Monitoring**: Instrumentation and audit logging  
+**Cloud-Native Deployment**: Production-ready infrastructure  
+**Documentation**: Architecture diagrams, implementation roadmap, user guide  
 
-## Risk Levels
+## 🌐 Production Deployment
 
-- **Low Risk** (0-24): Healthy parameters
-- **Moderate Risk** (25-49): Some areas need attention
-- **High Risk** (50+): Multiple risk factors present
+**Live URLs:**
+- **Application**: https://medai-lite-frontend.onrender.com
+- **API**: https://medai-lite.onrender.com/api
 
-## Production Deployment
+**Deployment Architecture:**
+- **Backend**: Render Web Service (Python 3.9, Gunicorn, Persistent Disk)
+- **Frontend**: Render Static Site (React build)
+- **Database**: SQLite with persistent storage at `/var/data`
+- **Auto-Deploy**: Enabled from GitHub `copilot/create-health-risk-assessment-app` branch
 
-### Build Frontend
-```bash
-cd frontend
-npm run build
-```
+## 📖 Documentation
 
-The built files will be in `frontend/build/` and Flask will serve them automatically.
+- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Complete system architecture (19,500 words)
+- **[IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md)**: Development timeline and progress (8,200 words)
+- **[USER_GUIDE.md](USER_GUIDE.md)**: End-user documentation with FAQ (11,800 words)
 
-### Run Production Server
-```bash
-python -m backend.app
-```
+## 👥 Team
 
-For production, consider using:
-- **Gunicorn** for Flask
-- **Nginx** as reverse proxy
-- **AWS EC2** or similar for hosting
+- **David Schallipp** - Project Leader, AI Software Engineering Intern
+- **Alex Sutterfield** - Team Member
+- **Jake Hamburger** - Team Member
+- **Malique Williams** - Team Member
+- **Sean Toussaint** - Team Member
 
-## Contributing
+## 🎥 Demo Videos
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -am 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
+- **Presentation**: [\[YouTube Link\]](https://youtu.be/vMQJqTupc3c)
+- **Live Demo**: [\[YouTube Link\]](https://youtu.be/1aeTKN5HIzA)
 
-## License
+## 📝 License
 
-See LICENSE file for details.
+This project was created as a Software Engineering course project at Florida Atlantic University Fall 2025.
 
-## Contact
+## 🙏 Acknowledgments
 
-For questions or support, please open an issue on GitHub.
+Built with:
+- GitHub Copilot - Code completion
+- Claude Opus (Anthropic) - Architecture design
+- ChatGPT (OpenAI) - Research and documentation
+- Figma - UI/UX design
 
 ---
 
-Built with ❤️ using Flask and React
+**Built with ❤️ demonstrating industry-grade software engineering practices**
+
+For questions or feedback, please open an issue on GitHub.

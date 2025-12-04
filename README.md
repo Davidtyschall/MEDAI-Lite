@@ -12,16 +12,16 @@ MEDAI-Lite is a production-grade, cloud-deployed health risk assessment platform
 
 ## ✨ Key Features
 
-- **🤖 Multi-Agent AI Architecture**: Three specialized agents (CardioAgent, MetabolicAgent, NeuroAgent) independently assess health domains
-- **📊 Rich Visualizations**: Interactive charts including doughnut charts, radar charts, bar charts, and trend analysis
-- **⌚ Apple Watch Integration**: Mock HealthKit integration demonstrating wearable device connectivity
-- **📈 Assessment History**: Persistent storage with full assessment tracking over time
-- **📉 Statistics Dashboard**: Aggregate analytics with risk distribution and trend visualization
-- **🔧 Admin Dashboard**: System monitoring, performance metrics, and audit logging
-- **☁️ Cloud Deployed**: Production deployment on Render with persistent database storage
+- **Multi-Agent AI Architecture**: Three specialized agents (CardioAgent, MetabolicAgent, NeuroAgent) independently assess health domains
+- **Rich Visualizations**: Interactive charts including doughnut charts, radar charts, bar charts, and trend analysis
+- **Apple Watch Integration**: Mock HealthKit integration demonstrating wearable device connectivity
+- **Assessment History**: Persistent storage with full assessment tracking over time
+- **Statistics Dashboard**: Aggregate analytics with risk distribution and trend visualization
+- **Admin Dashboard**: System monitoring, performance metrics, and audit logging
+- **Cloud Deployed**: Production deployment on Render with persistent database storage
 - **⚡ High Performance**: <100ms API response time (30x faster than requirements)
 
-## 🏗️ Architecture
+## Architecture
 
 ### Multi-Agent System
 ```
@@ -176,7 +176,7 @@ Frontend runs on `http://localhost:3000`
 
 Full API documentation: See `ARCHITECTURE.md`
 
-## 🧪 Testing
+## Testing
 ```bash
 # Run all backend tests (46 tests)
 python -m pytest backend/tests/
@@ -189,7 +189,7 @@ cd frontend
 npm test
 ```
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 - **API Response Time**: <100ms average (target: <3s)
 - **Database Queries**: 10-20ms
@@ -197,7 +197,7 @@ npm test
 - **Test Coverage**: 46 automated tests passing
 - **Uptime**: 99.9% (Render paid tier)
 
-## 🎓 Software Engineering Principles
+## Software Engineering Principles
 
 This project demonstrates:
 
@@ -229,7 +229,7 @@ This project demonstrates:
 
 ## 👥 Team
 
-- **David Schallipp** - Project Leader, AI Software Engineering Intern
+- **David Schallipp** - Project Leader, AI Software Engineer Intern
 - **Alex Sutterfield** - Team Member
 - **Jake Hamburger** - Team Member
 - **Malique Williams** - Team Member
@@ -244,10 +244,10 @@ This project demonstrates:
 
 This project was created as a Software Engineering course project at Florida Atlantic University Fall 2025.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with:
-- GitHub Copilot - Code completion
+- GitHub Copilot - Code enhancement
 - Claude Opus (Anthropic) - Architecture design
 - ChatGPT (OpenAI) - Research and documentation
 - Figma - UI/UX design
